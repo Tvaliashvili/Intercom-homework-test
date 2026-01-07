@@ -119,4 +119,3 @@ window.addEventListener("scroll", () => {
         }
     });
 });
-

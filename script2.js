@@ -3,20 +3,27 @@ const panels = [
     document.getElementById("panel-12"),
     document.getElementById("panel-13"),
     document.getElementById("panel-14"),
+    document.getElementById("panel-15"),
 ];
 const audio = document.getElementById("bgmm");
 const hint = document.getElementById("hint2");
 
 window.addEventListener("scroll", () => {
-    const scrollPercent = window.scrollY / (document.body.offsetHeight - window.innerHeight);
+    const scrollPercent =
+        window.scrollY / (document.body.offsetHeight - window.innerHeight);
 
     // Apply color to the GREEN channel: rgb(0, intensity, 0)
     const greenIntensity = Math.floor(scrollPercent * 100);
-    document.body.style.setProperty("--bg-green", `rgb(0, ${greenIntensity}, 0)`);
+    document.body.style.setProperty(
+        "--bg-green",
+        `rgb(0, ${greenIntensity}, 0)`
+    );
 
     // Audio Playback
     if (scrollPercent > 0.01 && audio.paused) {
-        audio.play().catch((e) => console.log("Audio blocked: waiting for user click"));
+        audio
+            .play()
+            .catch((e) => console.log("Audio blocked: waiting for user click"));
         hint.style.opacity = "0";
     }
 

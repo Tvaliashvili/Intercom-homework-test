@@ -5,7 +5,7 @@ body {
     color: white;
     overflow-x: hidden;
     height: 600vh;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     transition: background-color 0.2s ease-out;
 }
 
@@ -56,17 +56,39 @@ body {
 }
 
 @keyframes shake-extreme {
-    0% { margin: 1px 1px; }
-    10% { margin: -2px -3px; }
-    20% { margin: -4px 0px; }
-    30% { margin: 4px 3px; }
-    40% { margin: 1px -2px; }
-    50% { margin: -2px 3px; }
-    60% { margin: -4px 1px; }
-    70% { margin: 4px 1px; }
-    80% { margin: -1px -1px; }
-    90% { margin: 2px 3px; }
-    100% { margin: 1px -3px; }
+    0% {
+        margin: 1px 1px;
+    }
+    10% {
+        margin: -2px -3px;
+    }
+    20% {
+        margin: -4px 0px;
+    }
+    30% {
+        margin: 4px 3px;
+    }
+    40% {
+        margin: 1px -2px;
+    }
+    50% {
+        margin: -2px 3px;
+    }
+    60% {
+        margin: -4px 1px;
+    }
+    70% {
+        margin: 4px 1px;
+    }
+    80% {
+        margin: -1px -1px;
+    }
+    90% {
+        margin: 2px 3px;
+    }
+    100% {
+        margin: 1px -3px;
+    }
 }
 
 .shake-active {
