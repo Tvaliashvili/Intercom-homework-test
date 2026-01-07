@@ -85,7 +85,7 @@ window.addEventListener('scroll', () => {
     document.body.style.setProperty('--bg-red', `rgb(${redIntensity}, 0, 0)`);
 
     if (scrollPercent > 0.01 && audio.paused) {
-        audio.play();
+        audio.play().catch(e => console.log("Audio play blocked until user interaction"));
         hint.style.opacity = '0';
     }
 
@@ -103,13 +103,13 @@ window.addEventListener('scroll', () => {
             let currentScale = 1.1 - (localProgress * 0.1);
             panel.style.transform = `scale(${currentScale})`;
             
-            if (index === panels.length - 1 && localProgress > 0.1) {
+            if (index === panels.length - 1 && localProgress > 0.05) {
                 panel.classList.add('shake-active');
             } else {
                 panel.classList.remove('shake-active');
             }
 
-            if (localProgress > 0.8) {
+            if (localProgress > 0.8 && index !== panels.length - 1) {
                 panel.style.opacity = 1 - ((localProgress - 0.8) * 5);
             }
         } else {
@@ -117,4 +117,4 @@ window.addEventListener('scroll', () => {
             panel.classList.remove('shake-active');
         }
     });
-})
+});
