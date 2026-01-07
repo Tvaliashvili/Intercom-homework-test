@@ -65,3 +65,49 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+
+
+const panels = [
+    document.getElementById('panel-1'),
+    document.getElementById('panel-2'),
+    document.getElementById('panel-3'),
+    document.getElementById('panel-4'),
+    document.getElementById('panel-5')
+];
+const audio = document.getElementById('bgm');
+const hint = document.getElementById('hint');
+
+window.addEventListener('scroll', () => {
+    const scrollPercent = window.scrollY / (document.body.offsetHeight - window.innerHeight);
+    
+    if (scrollPercent > 0.01 && audio.paused) {
+        audio.play();
+        hint.style.opacity = '0';
+    }
+
+    const step = 1 / panels.length;
+
+    panels.forEach((panel, index) => {
+        const start = index * step;
+        const end = (index + 1) * step;
+
+        if (scrollPercent >= start && scrollPercent <= end) {
+            const localProgress = (scrollPercent - start) / step;
+            
+            panel.style.opacity = Math.min(localProgress * 4, 1);
+            panel.style.transform = `scale(${1.1 - (localProgress * 0.1)})`;
+            
+            if (localProgress > 0.8) {
+                panel.style.opacity = 1 - ((localProgress - 0.8) * 5);
+            }
+        } else {
+            panel.style.opacity = '0';
+        }
+    });
+
+    if (scrollPercent > (1 - step)) {
+        const shake = (Math.random() - 0.5) * 4;
+        panels[panels.length - 1].style.transform += ` translateX(${shake}px)`;
+    }
+});

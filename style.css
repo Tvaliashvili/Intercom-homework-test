@@ -168,6 +168,7 @@ body {
     margin: 0;
 }
 
+
 .task-list li {
     font-size: 0.85rem;
     color: #94a3b8;
@@ -192,6 +193,40 @@ body {
 
 .task-list li em {
     color: var(--primary-orange);
+    font-style: normal;
+}
+
+.task-list2 {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+.task-list2 li {
+    font-size: 1.2rem;
+    color: #06b6d4;
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.5;
+}
+
+.task-list2 li::before {
+    content: "▹";
+    color: var(--primary-cyan);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.1em;
+}
+
+.task-list2 li strong {
+    color: #e2e8f0;
+}
+
+.task-list2 li em  {
+    color: var(--primary-blue);
     font-style: normal;
 }
 
@@ -479,3 +514,58 @@ body {
     .hero-full h2 { font-size: 1.8rem; }
 }
 
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: white;
+    overflow-x: hidden;
+    height: 600vh;
+    font-family: 'Inter', sans-serif;
+}
+
+.scene-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.panel {
+    position: absolute;
+    max-width: 85%;
+    max-height: 80vh;
+    opacity: 0;
+    transform: scale(1.1);
+    transition: transform 0.1s ease-out;
+    pointer-events: none;
+    border: 1px solid #222;
+}
+
+.vignette {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 150px #000;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.overlay-text {
+    position: fixed;
+    bottom: 5%;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 4px;
+    color: #666;
+    z-index: 10;
+    text-transform: uppercase;
+}
