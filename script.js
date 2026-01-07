@@ -81,6 +81,9 @@ const hint = document.getElementById('hint');
 window.addEventListener('scroll', () => {
     const scrollPercent = window.scrollY / (document.body.offsetHeight - window.innerHeight);
     
+    const redIntensity = Math.floor(scrollPercent * 100); 
+    document.body.style.setProperty('--bg-red', `rgb(${redIntensity}, 0, 0)`);
+
     if (scrollPercent > 0.01 && audio.paused) {
         audio.play();
         hint.style.opacity = '0';
@@ -96,18 +99,22 @@ window.addEventListener('scroll', () => {
             const localProgress = (scrollPercent - start) / step;
             
             panel.style.opacity = Math.min(localProgress * 4, 1);
-            panel.style.transform = `scale(${1.1 - (localProgress * 0.1)})`;
             
+            let currentScale = 1.1 - (localProgress * 0.1);
+            panel.style.transform = `scale(${currentScale})`;
+            
+            if (index === panels.length - 1 && localProgress > 0.1) {
+                panel.classList.add('shake-active');
+            } else {
+                panel.classList.remove('shake-active');
+            }
+
             if (localProgress > 0.8) {
                 panel.style.opacity = 1 - ((localProgress - 0.8) * 5);
             }
         } else {
             panel.style.opacity = '0';
+            panel.classList.remove('shake-active');
         }
     });
-
-    if (scrollPercent > (1 - step)) {
-        const shake = (Math.random() - 0.5) * 4;
-        panels[panels.length - 1].style.transform += ` translateX(${shake}px)`;
-    }
-});
+})
